@@ -46,75 +46,36 @@ namespace HotelManagement.Data.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
+
             modelBuilder.ApplyConfiguration(new BookingConfiguration());
+
             modelBuilder.ApplyConfiguration(new BookingDetailConfiguration());
 
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
 
-            /*// Customer - CustomerType (N - 1)
-            modelBuilder.Entity<Customer>()
-                .HasOne(c => c.CustomerType)
-                .WithMany(ct => ct.Customer)
-                .HasForeignKey(c => c.CustomerTypeID);
+            modelBuilder.ApplyConfiguration(new CustomerTypeConfiguration());
 
-            // Customer - Account (1 - 1)
-            modelBuilder.Entity<Customer>()
-                .HasOne(c => c.Account)
-                .WithOne(a => a.Customer)
-                .HasForeignKey<Customer>(c => c.AccountID);
+            modelBuilder.ApplyConfiguration(new IventoryItemConfiguration());
 
-            // Staff - StaffType (N - 1)
-            modelBuilder.Entity<Staff>()
-                .HasOne(s => s.StaffType)
-                .WithMany(st => st.Staff)
-                .HasForeignKey(s => s.StaffTypeID);
+            modelBuilder.ApplyConfiguration(new LinkRoleConfiguration());
 
-            // Room - RoomType (N - 1)
-            modelBuilder.Entity<Room>()
-                .HasOne(r => r.RoomType)
-                .WithMany(rt => rt.Room)
-                .HasForeignKey(r => r.RoomTypeID);
+            modelBuilder.ApplyConfiguration(new PaymentConfiguration());
 
-            // Room - Staff (N - 1)
-            modelBuilder.Entity<Room>()
-                .HasOne(r => r.Staff)
-                .WithMany(s => s.Room)
-                .HasForeignKey(r => r.StaffID);
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
 
-            // Booking - Customer (N - 1)
-            modelBuilder.Entity<Booking>()
-                .HasOne(b => b.Customer)
-                .WithMany(c => c.Booking)
-                .HasForeignKey(b => b.CustomerID);
+            modelBuilder.ApplyConfiguration(new RoomConfiguration());
 
-            // Booking - Room (N - 1)
-            modelBuilder.Entity<Booking>()
-                .HasOne(b => b.Room)
-                .WithMany(r => r.Booking)
-                .HasForeignKey(b => b.RoomID);
+            modelBuilder.ApplyConfiguration(new RoomTypeConfiguration());
 
-            // Booking - Payment (1 - 1)
-            modelBuilder.Entity<Payment>()
-                .HasOne(p => p.Booking)
-                .WithOne(b => b.Payment)
-                .HasForeignKey<Payment>(p => p.BookingID);
+            modelBuilder.ApplyConfiguration(new ServiceConfiguration());
 
-            // InventoryItem - Staff (N - 1)
-            modelBuilder.Entity<IventoryItem>()
-                .HasOne(i => i.Staff)
-                .WithMany(s => s.Iventory)
-                .HasForeignKey(i => i.StaffID);
+            modelBuilder.ApplyConfiguration(new ServiceDetailConfiguration());
 
-            // Service - Staff (N - 1)
-            modelBuilder.Entity<Service>()
-                .HasOne(s => s.Staff)
-                .WithMany(st => st.Service)
-                .HasForeignKey(s => s.StaffID);
+            modelBuilder.ApplyConfiguration(new StaffConfiguration());
 
-            // Service - Customer (N - 1)
-            modelBuilder.Entity<Service>()
-                .HasOne(s => s.Customer)
-                .WithMany(c => c.Service)
-                .HasForeignKey(s => s.CustomerID);*/
+            modelBuilder.ApplyConfiguration(new StaffTypeConfiguration());
+
+
         }
     }
 }

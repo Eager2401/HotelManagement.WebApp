@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Data.Configuration
 {
-    internal class AccountConfiguration : IEntityTypeConfiguration<Account>
+    public class AccountConfiguration : IEntityTypeConfiguration<Account>
     {
         public void Configure(EntityTypeBuilder<Account> builder)
         {
@@ -23,10 +23,7 @@ namespace HotelManagement.Data.Configuration
 
             builder.Property(a => a.Email).IsRequired();
 
-            builder.HasOne(a => a.Role)
-                .WithMany(r => r.Account)
-                .HasForeignKey(a => a.RoleID)
-                .OnDelete(DeleteBehavior.Cascade);
+            
 
             
         }

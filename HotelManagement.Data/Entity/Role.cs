@@ -12,6 +12,6 @@ namespace HotelManagement.Data.Entity
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public ICollection<Account> Account { get; set; }
+        public ICollection<LinkRole> LinkRole { get; set; }
     }
 }

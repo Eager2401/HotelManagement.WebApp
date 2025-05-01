@@ -10,13 +10,12 @@ namespace HotelManagement.Data.Entity
 
         public string AccountPass { get; set; }
 
-        public int  RoleID { get; set; }
-
         public DateOnly CreatedAt { get; set; }
 
         public string Email { get; set; }
 
         public Customer Customer { get; set; }
 
+        public ICollection<LinkRole> LinkRole { get; set; }
     }
 }

@@ -13,6 +13,6 @@
         public Staff Staff { get; set; }
         public Customer Customer { get; set; }
 
-        public ICollection<ServiceDetail> ServiceDetails { get; set; }
+        public ICollection<ServiceDetail> ServiceDetail { get; set; }
     }
 }
