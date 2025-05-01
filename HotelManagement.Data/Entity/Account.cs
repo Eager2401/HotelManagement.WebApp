@@ -18,6 +18,5 @@ namespace HotelManagement.Data.Entity
 
         public Customer Customer { get; set; }
 
-        public Role Role { get; set; }
     }
 }

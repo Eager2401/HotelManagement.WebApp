@@ -29,6 +29,8 @@ namespace HotelManagement.Data.EntityFramework
 
         public DbSet<Booking> Bookings { get; set; }
 
+        public DbSet<BookingDetail> BookingDetails { get; set; }
+
         public DbSet<Staff> Staffs { get; set; }
 
         public DbSet<StaffType> StaffTypes { get; set; }
@@ -37,11 +39,16 @@ namespace HotelManagement.Data.EntityFramework
 
         public DbSet<Service> Services { get; set; }
 
+        public DbSet<ServiceDetail> ServiceDetails { get; set; }
+
         public DbSet<IventoryItem> Iventories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
+            modelBuilder.ApplyConfiguration(new BookingConfiguration());
+            modelBuilder.ApplyConfiguration(new BookingDetailConfiguration());
+
 
             /*// Customer - CustomerType (N - 1)
             modelBuilder.Entity<Customer>()
