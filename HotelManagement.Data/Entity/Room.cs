@@ -7,6 +7,7 @@ namespace HotelManagement.Data.Entity
         public int RoomID { get; set; }
         public string RoomName { get; set; }
         public Status Status { get; set; }
+
         public int StaffID { get; set; }
         public int RoomTypeID { get; set; }
 
