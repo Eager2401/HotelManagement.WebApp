@@ -22,10 +22,6 @@ namespace HotelManagement.Data.Configuration
             builder.Property(a => a.CreatedAt);
 
             builder.Property(a => a.Email).IsRequired();
-
-            
-
-            
         }
     }
 }

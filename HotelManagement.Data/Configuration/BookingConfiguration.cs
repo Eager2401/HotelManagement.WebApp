@@ -13,8 +13,6 @@ namespace HotelManagement.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Booking> builder)
         {
-            builder.ToTable("Bookings");
-
             builder.HasKey(b => b.BookingId);
 
             builder.Property(b => b.BookingDate);
