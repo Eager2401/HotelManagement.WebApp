@@ -24,7 +24,7 @@ namespace HotelManagement.Data.Configuration
             builder.Property(i => i.Supplier);
 
             builder.HasOne(i => i.Staff)
-                .WithMany(s => s.Iventory)
+                .WithMany(s => s.IventoryItem)
                 .HasForeignKey(i => i.StaffID);
         }
     }

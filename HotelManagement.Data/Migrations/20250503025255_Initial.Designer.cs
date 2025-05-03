@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelManagement.Data.Migrations
 {
     [DbContext(typeof(HTMDbContext))]
-    [Migration("20250502025240_Initial")]
+    [Migration("20250503025255_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -53,6 +53,20 @@ namespace HotelManagement.Data.Migrations
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("HotelManagement.Data.Entity.AppConfig", b =>
+                {
+                    b.Property<string>("Key")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Key");
+
+                    b.ToTable("AppConfigs", (string)null);
+                });
+
             modelBuilder.Entity("HotelManagement.Data.Entity.Booking", b =>
                 {
                     b.Property<int>("BookingId")
@@ -85,7 +99,7 @@ namespace HotelManagement.Data.Migrations
 
                     b.HasIndex("RoomID");
 
-                    b.ToTable("Bookings", (string)null);
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("HotelManagement.Data.Entity.BookingDetail", b =>
@@ -217,7 +231,7 @@ namespace HotelManagement.Data.Migrations
 
                     b.HasIndex("StaffID");
 
-                    b.ToTable("Iventories");
+                    b.ToTable("IventoryItems");
                 });
 
             modelBuilder.Entity("HotelManagement.Data.Entity.LinkRole", b =>
@@ -533,7 +547,7 @@ namespace HotelManagement.Data.Migrations
             modelBuilder.Entity("HotelManagement.Data.Entity.IventoryItem", b =>
                 {
                     b.HasOne("HotelManagement.Data.Entity.Staff", "Staff")
-                        .WithMany("Iventory")
+                        .WithMany("IventoryItem")
                         .HasForeignKey("StaffID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -681,7 +695,7 @@ namespace HotelManagement.Data.Migrations
 
             modelBuilder.Entity("HotelManagement.Data.Entity.Staff", b =>
                 {
-                    b.Navigation("Iventory");
+                    b.Navigation("IventoryItem");
 
                     b.Navigation("Room");
 
