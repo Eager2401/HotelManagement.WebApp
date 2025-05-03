@@ -28,6 +28,18 @@ namespace HotelManagement.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AppConfigs",
+                columns: table => new
+                {
+                    Key = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppConfigs", x => x.Key);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CustomerTypes",
                 columns: table => new
                 {
@@ -375,8 +387,8 @@ namespace HotelManagement.Data.Migrations
                 column: "CustomerTypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Iventories_StaffID",
-                table: "Iventories",
+                name: "IX_IventoryItems_StaffID",
+                table: "IventoryItems",
                 column: "StaffID");
 
             migrationBuilder.CreateIndex(
@@ -429,6 +441,9 @@ namespace HotelManagement.Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AppConfigs");
+
             migrationBuilder.DropTable(
                 name: "BookingDetails");
 

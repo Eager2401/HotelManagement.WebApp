@@ -41,10 +41,12 @@ namespace HotelManagement.Data.EntityFramework
 
         public DbSet<ServiceDetail> ServiceDetails { get; set; }
 
-        public DbSet<IventoryItem> Iventories { get; set; }
+        public DbSet<IventoryItem> IventoryItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Configure using FluentAPI
+
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
 
             modelBuilder.ApplyConfiguration(new BookingConfiguration());
@@ -74,7 +76,6 @@ namespace HotelManagement.Data.EntityFramework
             modelBuilder.ApplyConfiguration(new StaffConfiguration());
 
             modelBuilder.ApplyConfiguration(new StaffTypeConfiguration());
-
 
         }
     }

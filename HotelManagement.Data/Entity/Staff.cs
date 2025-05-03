@@ -15,7 +15,7 @@
         public StaffType StaffType { get; set; }
 
         public virtual ICollection<Room> Room { get; set; }
-        public virtual ICollection<IventoryItem> Iventory { get; set; }
+        public virtual ICollection<IventoryItem> IventoryItem { get; set; }
         public virtual ICollection<Service> Service { get; set; }
     }
 }
