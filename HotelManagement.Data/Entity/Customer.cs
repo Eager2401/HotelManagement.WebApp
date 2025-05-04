@@ -17,6 +17,6 @@
         public CustomerType CustomerType { get; set; }
         public Account Account { get; set; }
         public ICollection<Booking> Booking { get; set; }
-        public ICollection<Service> Service { get; set; }
+        public ICollection<ServiceDetail> ServiceDetail { get; set; }
     }
 }

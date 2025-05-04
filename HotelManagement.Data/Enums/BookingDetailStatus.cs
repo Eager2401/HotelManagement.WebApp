@@ -8,12 +8,12 @@ namespace HotelManagement.Data.Enums
 {
     public enum BookingDetailStatus
     {
-        Confirmed, //Đã xác nhận
-        CheckedIn, //Đã nhận phòng
-        CheckedOut, //Đã trả phòng
-        Cancelled, //Phòng bị hủy
-        Pending, //Chờ xác nhận
-        Guaranted, //Đã thanh toán trước
-        NoShow //Khách không đến
+        Confirmed = 0, //Đã xác nhận
+        CheckedIn = 1, //Đã nhận phòng
+        CheckedOut = 2, //Đã trả phòng
+        Cancelled = 3, //Phòng bị hủy
+        Pending = 4, //Chờ xác nhận
+        Guaranted = 5, //Đã thanh toán trước
+        NoShow =6 //Khách không đến
     }
 }

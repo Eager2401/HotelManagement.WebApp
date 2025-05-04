@@ -28,18 +28,6 @@ namespace HotelManagement.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AppConfigs",
-                columns: table => new
-                {
-                    Key = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AppConfigs", x => x.Key);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CustomerTypes",
                 columns: table => new
                 {
@@ -243,18 +231,11 @@ namespace HotelManagement.Data.Migrations
                     ServiceName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    StaffID = table.Column<int>(type: "int", nullable: false),
-                    CustomerID = table.Column<int>(type: "int", nullable: false)
+                    StaffID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Services", x => x.ServiceID);
-                    table.ForeignKey(
-                        name: "FK_Services_Customers_CustomerID",
-                        column: x => x.CustomerID,
-                        principalTable: "Customers",
-                        principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Services_Staffs_StaffID",
                         column: x => x.StaffID,
@@ -302,11 +283,18 @@ namespace HotelManagement.Data.Migrations
                     UseNumber = table.Column<int>(type: "int", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Memo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ServiceID = table.Column<int>(type: "int", nullable: false)
+                    ServiceID = table.Column<int>(type: "int", nullable: false),
+                    CustomerID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ServiceDetails", x => x.ServiceDetailID);
+                    table.ForeignKey(
+                        name: "FK_ServiceDetails_Customers_CustomerID",
+                        column: x => x.CustomerID,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ServiceDetails_Services_ServiceID",
                         column: x => x.ServiceID,
@@ -418,14 +406,14 @@ namespace HotelManagement.Data.Migrations
                 column: "StaffID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ServiceDetails_CustomerID",
+                table: "ServiceDetails",
+                column: "CustomerID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ServiceDetails_ServiceID",
                 table: "ServiceDetails",
                 column: "ServiceID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Services_CustomerID",
-                table: "Services",
-                column: "CustomerID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Services_StaffID",
@@ -441,9 +429,6 @@ namespace HotelManagement.Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AppConfigs");
-
             migrationBuilder.DropTable(
                 name: "BookingDetails");
 
@@ -469,22 +454,22 @@ namespace HotelManagement.Data.Migrations
                 name: "Services");
 
             migrationBuilder.DropTable(
-                name: "Rooms");
-
-            migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "RoomTypes");
-
-            migrationBuilder.DropTable(
-                name: "Staffs");
+                name: "Rooms");
 
             migrationBuilder.DropTable(
                 name: "Accounts");
 
             migrationBuilder.DropTable(
                 name: "CustomerTypes");
+
+            migrationBuilder.DropTable(
+                name: "RoomTypes");
+
+            migrationBuilder.DropTable(
+                name: "Staffs");
 
             migrationBuilder.DropTable(
                 name: "StaffTypes");

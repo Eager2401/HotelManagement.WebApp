@@ -24,7 +24,7 @@ namespace HotelManagement.Data.Extensions
                 new Account
                 {
                     AccountID = 4,
-                    AccountName = "Admin1",
+                    AccountName = "HieuPham",
                     AccountPass = "000000hi",
                     CreatedAt = new DateOnly(2025, 05, 03),
                     Email = "nva@example.com",
@@ -32,7 +32,7 @@ namespace HotelManagement.Data.Extensions
                 new Account
                 {
                     AccountID = 5,
-                    AccountName = "Admin2",
+                    AccountName = "HPXVLL",
                     AccountPass = "000000hi",
                     CreatedAt = new DateOnly(2025, 05, 03),
                     Email = "ltb@example.com",
@@ -174,6 +174,163 @@ namespace HotelManagement.Data.Extensions
                     Description = "Quản lý chung, giám sát hoạt động của các bộ phận và theo dõi báo cáo hiệu suất."
                 }
             );
+
+            modelBuilder.Entity<LinkRole>().HasData(
+                new LinkRole() { RoleID = 1, AccountID = 1 },
+                new LinkRole() { RoleID = 2, AccountID = 2 },
+                new LinkRole() { RoleID = 3, AccountID = 3}
+                );
+
+            modelBuilder.Entity<Room>().HasData(
+                new Room
+                {
+                    RoomID = 1,
+                    RoomName = "A101",
+                    Status = Enums.RoomStatus.Available,
+                    RoomTypeID = 1
+                },
+                new Room
+                {
+                    RoomID = 2,
+                    RoomName = "A102",
+                    Status = Enums.RoomStatus.Occupied,
+                    RoomTypeID = 2
+
+                },
+                new Room
+                {
+                    RoomID = 3,
+                    RoomName = "B201",
+                    Status = Enums.RoomStatus.Maintenance,
+                    RoomTypeID = 3
+
+                },
+                new Room
+                {
+                    RoomID = 4,
+                    RoomName = "B202",
+                    Status = Enums.RoomStatus.Reserved,
+                    RoomTypeID = 2
+                }
+            );
+
+            modelBuilder.Entity<RoomType>().HasData(
+                new RoomType
+                {
+                    RoomTypeID = 1,
+                    RoomTypeName = "Standard",
+                    Description = "Phòng tiêu chuẩn, đầy đủ tiện nghi cơ bản.",
+                    Capacity = 2,
+                    PricePerNight = 500000
+                },
+                new RoomType
+                {
+                    RoomTypeID = 2,
+                    RoomTypeName = "Deluxe",
+                    Description = "Phòng cao cấp, không gian rộng, view đẹp.",
+                    Capacity = 3,
+                    PricePerNight = 900000
+                },
+                new RoomType
+                {
+                    RoomTypeID = 3,
+                    RoomTypeName = "Suite",
+                    Description = "Phòng thượng hạng, nội thất sang trọng, dịch vụ VIP.",
+                    Capacity = 4,
+                    PricePerNight = 1500000
+                }
+            );
+
+            modelBuilder.Entity<Service>().HasData(
+                new Service
+                {
+                    ServiceID = 1,
+                    ServiceName = "Giặt ủi",
+                    Description = "Dịch vụ giặt và ủi quần áo cho khách.",
+                    Price = 50000
+                },
+                new Service
+                {
+                    ServiceID = 2,
+                    ServiceName = "Đưa đón sân bay",
+                    Description = "Xe đưa đón khách từ/đến sân bay.",
+                    Price = 200000
+                },
+                new Service
+                {
+                    ServiceID = 3,
+                    ServiceName = "Spa",
+                    Description = "Thư giãn và làm đẹp tại khu vực spa cao cấp.",
+                    Price = 300000
+                },
+                new Service
+                {
+                    ServiceID = 4,
+                    ServiceName = "Ăn sáng buffet",
+                    Description = "Bữa sáng buffet tại nhà hàng của khách sạn.",
+                    Price = 100000
+                }
+            );
+
+            /*            modelBuilder.Entity<ServiceDetail>().HasData(
+                            new ServiceDetail() { ServiceDetailID = 1, UseNumber = 2, },
+                            new ServiceDetail() { },
+                            new ServiceDetail() { }
+                        );
+
+            */
+            modelBuilder.Entity<Staff>().HasData(
+                new Staff
+                {
+                    StaffId = 1,
+                    FullName = "Nguyễn Văn A",
+                    PhoneNumber = "0123456789",
+                    Email = "a.nguyen@example.com",
+                    Address = "Hà Nội",
+                    HireDate = new DateOnly(2022, 01, 15),
+                    Salary = 10000000,
+                    StaffTypeID = 1 // Lễ tân
+                },
+                new Staff
+                {
+                    StaffId = 2,
+                    FullName = "Trần Thị B",
+                    PhoneNumber = "0987654321",
+                    Email = "b.tran@example.com",
+                    Address = "TP. Hồ Chí Minh",
+                    HireDate = new DateOnly(2021, 09, 10),
+                    Salary = 15000000,
+                    StaffTypeID = 2 // Quản lý
+                }
+            );
+
+            modelBuilder.Entity<StaffType>().HasData(
+                new StaffType
+                {
+                    StaffTypeID = 1,
+                    StaffTypeName = "Lễ tân",
+                    StaffDescription = "Chịu trách nhiệm đón tiếp khách, xử lý thủ tục nhận và trả phòng."
+                },
+                new StaffType
+                {
+                    StaffTypeID = 2,
+                    StaffTypeName = "Quản lý",
+                    StaffDescription = "Giám sát hoạt động chung của khách sạn, quản lý nhân sự và tài chính."
+                },
+                new StaffType
+                {
+                    StaffTypeID = 3,
+                    StaffTypeName = "Phục vụ phòng",
+                    StaffDescription = "Dọn dẹp phòng, thay ga giường và đảm bảo phòng luôn sạch sẽ."
+                },
+                new StaffType
+                {
+                    StaffTypeID = 4,
+                    StaffTypeName = "Bảo vệ",
+                    StaffDescription = "Đảm bảo an ninh khách sạn, hỗ trợ khách khi cần thiết."
+                }
+            );
+
         }
     }
 }
