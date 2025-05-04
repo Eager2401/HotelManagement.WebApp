@@ -17,6 +17,9 @@ namespace HotelManagement.Data.Entity
         public string Memo {  get; set; }
 
         public int ServiceID { get; set; }
+        public int CustomerID { get; set; }
+
+        public Customer Customer { get; set; }
 
         public Service Service { get; set; }
 

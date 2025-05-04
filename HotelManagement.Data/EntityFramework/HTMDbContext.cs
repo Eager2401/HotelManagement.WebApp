@@ -76,7 +76,6 @@ namespace HotelManagement.Data.EntityFramework
             modelBuilder.ApplyConfiguration(new StaffConfiguration());
 
             modelBuilder.ApplyConfiguration(new StaffTypeConfiguration());
-
         }
     }
 }

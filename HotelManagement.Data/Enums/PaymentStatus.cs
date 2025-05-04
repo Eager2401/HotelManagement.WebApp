@@ -2,7 +2,7 @@
 {
     public enum PaymentStatus
     {
-        Received,
-        Failed
+        Received = 0,
+        Failed =1
     }
 }

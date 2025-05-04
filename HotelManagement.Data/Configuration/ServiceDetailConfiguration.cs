@@ -23,7 +23,11 @@ namespace HotelManagement.Data.Configuration
 
             builder.HasOne(sd => sd.Service)
                 .WithMany(s => s.ServiceDetail)
-                .HasForeignKey(s => s.ServiceID);
+                .HasForeignKey(sd => sd.ServiceID);
+
+            builder.HasOne(sd => sd.Customer)
+                .WithMany(c => c.ServiceDetail)
+                .HasForeignKey(sd => sd.CustomerID);
         }
     }
 }

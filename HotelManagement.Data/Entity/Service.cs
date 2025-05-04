@@ -8,10 +8,8 @@
         public decimal Price { get; set; }
 
         public int StaffID { get; set; }
-        public int CustomerID { get; set; }
 
         public Staff Staff { get; set; }
-        public Customer Customer { get; set; }
 
         public ICollection<ServiceDetail> ServiceDetail { get; set; }
     }

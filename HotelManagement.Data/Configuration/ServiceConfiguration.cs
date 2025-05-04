@@ -24,11 +24,6 @@ namespace HotelManagement.Data.Configuration
             builder.HasOne(sr => sr.Staff)
                 .WithMany(st => st.Service)
                 .HasForeignKey(sr => sr.StaffID);
-
-            builder.HasOne(s => s.Customer)
-                .WithMany(c => c.Service)
-                .HasForeignKey(s => s.CustomerID);
-
         }
     }
 }

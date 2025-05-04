@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Data.Enums
 {
-    public enum Status
+    public enum RoomStatus
     {
-        Rented,
-        Empty
+        Available = 0,
+        Occupied = 1,
+        Maintenance = 2,
+        Reserved = 3
     }
 }

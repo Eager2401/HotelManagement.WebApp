@@ -50,20 +50,6 @@ namespace HotelManagement.Data.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("HotelManagement.Data.Entity.AppConfig", b =>
-                {
-                    b.Property<string>("Key")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Key");
-
-                    b.ToTable("AppConfigs", (string)null);
-                });
-
             modelBuilder.Entity("HotelManagement.Data.Entity.Booking", b =>
                 {
                     b.Property<int>("BookingId")
@@ -377,9 +363,6 @@ namespace HotelManagement.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceID"));
 
-                    b.Property<int>("CustomerID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -396,8 +379,6 @@ namespace HotelManagement.Data.Migrations
 
                     b.HasKey("ServiceID");
 
-                    b.HasIndex("CustomerID");
-
                     b.HasIndex("StaffID");
 
                     b.ToTable("Services");
@@ -410,6 +391,9 @@ namespace HotelManagement.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceDetailID"));
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Memo")
                         .IsRequired()
@@ -425,6 +409,8 @@ namespace HotelManagement.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ServiceDetailID");
+
+                    b.HasIndex("CustomerID");
 
                     b.HasIndex("ServiceID");
 
@@ -603,30 +589,30 @@ namespace HotelManagement.Data.Migrations
 
             modelBuilder.Entity("HotelManagement.Data.Entity.Service", b =>
                 {
-                    b.HasOne("HotelManagement.Data.Entity.Customer", "Customer")
-                        .WithMany("Service")
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("HotelManagement.Data.Entity.Staff", "Staff")
                         .WithMany("Service")
                         .HasForeignKey("StaffID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Customer");
-
                     b.Navigation("Staff");
                 });
 
             modelBuilder.Entity("HotelManagement.Data.Entity.ServiceDetail", b =>
                 {
+                    b.HasOne("HotelManagement.Data.Entity.Customer", "Customer")
+                        .WithMany("ServiceDetail")
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("HotelManagement.Data.Entity.Service", "Service")
                         .WithMany("ServiceDetail")
                         .HasForeignKey("ServiceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Customer");
 
                     b.Navigation("Service");
                 });
@@ -662,7 +648,7 @@ namespace HotelManagement.Data.Migrations
                 {
                     b.Navigation("Booking");
 
-                    b.Navigation("Service");
+                    b.Navigation("ServiceDetail");
                 });
 
             modelBuilder.Entity("HotelManagement.Data.Entity.CustomerType", b =>
